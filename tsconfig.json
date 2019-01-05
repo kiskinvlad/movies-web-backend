@@ -1,0 +1,21 @@
+{ 
+  "compilerOptions": { 
+    "noImplicitAny": false,
+    "target": "es6", 
+    "module": "commonjs", 
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "dist", 
+    "sourceMap": false ,
+    "lib": ["es5", "es6", "dom"],
+    "typeRoots": ["node_modules/@types"]
+  }, 
+  "include": [ 
+    "src/**/*.ts" ,
+  ], 
+  "exclude": [ 
+    "node_modules" 
+  ]
+}
