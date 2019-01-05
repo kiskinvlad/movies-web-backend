@@ -1,0 +1,6 @@
+.history
+node_modules
+.vscode
+.env
+.env.production
+.DB_STORE
