@@ -10,6 +10,9 @@ abstract class ErrorHandler {
   static clientErrorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
     if (req.xhr) {
       res.status(500).send({ error: 'Something failed!' });
+    }
+    else if (err.name === 'UnauthorizedError') {
+      return res.status(500).json({ error: 'Invalid Token' });
     } else {
       next(err);
     }

@@ -6,16 +6,16 @@ import methodOverride from 'method-override';
 import q from 'q'
 import mongoose from 'mongoose'; //import mongoose
 import morgan from 'morgan';
+import cors from 'cors';
 
-import { logger } from "./config";
-import { ErrorHandler } from "./config";
-import { api, userApi, companyApi } from './routes'
+import { Jwt, Mailer, logger, ErrorHandler } from "./config";
+
+import { api, userApi } from './routes'
 
 
 import { IUserModel } from "./interfaces/IUserModel";
 import { IModel } from "./interfaces/index";
 import { UserModel } from "./models/user";
-import { userMongoSchema } from "./schemas/mongo/user";
 
 class App { 
   /**
@@ -59,6 +59,10 @@ class App {
     this.express.use('/', express.static(
       path.join(__dirname, process.env.NODE_ENV === 'production' ? 'dist/static' : '/static'))
     )
+    this.express.use(cors({credentials: true, origin: true}));
+    this.express.use(Jwt.jwtHandler());
+    Mailer.setupMailer();
+    
   }
   /**
    * Setup mongoose
@@ -80,7 +84,7 @@ class App {
    * Mount api routes
    */
   private mountAPIRoutes(): void { 
-    this.express.use('/api/user', userApi) 
+    this.express.use('/api/auth', userApi) 
     this.express.use('/api', api);
   }
   /**

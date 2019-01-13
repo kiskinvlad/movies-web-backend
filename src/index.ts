@@ -14,5 +14,5 @@ app.listen(port, (err) => {
   if (err) { 
     return logger.error(err) 
   } 
-  return logger.info(`Hello ${name}, server is listening on port ${port}`);
+  return logger.info(`Server is listening on port ${port}`);
 })

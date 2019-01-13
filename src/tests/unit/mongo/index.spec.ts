@@ -26,7 +26,6 @@ export class InitializeMongo {
   @test("Mongo initializated")
   public async sequelizeCreated() {
     await require('./user.spec');
-    await require('./company.spec');
   }
 
   public static getConnection(): mongoose.Connection {
